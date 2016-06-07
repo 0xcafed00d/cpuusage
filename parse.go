@@ -15,6 +15,12 @@ type cpuinfo struct {
 	cores   []coreinfo
 }
 
+func (c cpuinfo) clone() (cc cpuinfo) {
+	cc.overall = c.overall
+	cc.cores = append(cc.cores, c.cores...)
+	return
+}
+
 func parserCoreInfo(s string) (coreinfo, error) {
 	core := coreinfo{}
 
