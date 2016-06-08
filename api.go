@@ -12,7 +12,7 @@
 //       if err != nil {
 //           // handle error....
 //       }
-//       fmt.Printf("Overall %: %d Per Core %: %v\n", u.Overall, u.Cores)
+//       fmt.Printf("Overall %%: %d Per Core %%: %v\n", u.Overall, u.Cores)
 //       time.Sleep(1 * time.Second)
 //  }
 package cpuusage
