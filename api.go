@@ -1,27 +1,18 @@
+// Package cpuusage library that monitors real time CPU usage (total and per-core) (linux only)
 package cpuusage
 
+// Usage struct holds the overall cpu usage and the per-core usage resulting from the last call to Measure().
+// Each usage is an int in the range 0..100 representing the percentage cpu utilisation
 type Usage struct {
-	Overall  int
+	// Overall is the combined cpu usage of all cores in the system
+	Overall int
+
 	Cores    []int
 	previous *cpuinfo
 }
 
-func delta(c1, c2 coreinfo) coreinfo {
-	return coreinfo{
-		name:   c1.name,
-		user:   c2.user - c1.user,
-		nice:   c2.nice - c1.nice,
-		idle:   c2.idle - c1.idle,
-		system: c2.system - c1.system,
-	}
-}
-
-func calcUsage(c coreinfo) int {
-	used := c.nice + c.system + c.user
-	return (used * 100) / (used + c.idle)
-}
-
-func (u *Usage) GetUsage() error {
+// Measure reads the /proc/stat file and extracts the cpu usage information, writing it into the Usage struct.
+func (u *Usage) Measure() error {
 	cpu, err := readProcStat()
 	if err != nil {
 		return err

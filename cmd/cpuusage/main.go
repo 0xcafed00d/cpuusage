@@ -12,7 +12,7 @@ func main() {
 	u := cpuusage.Usage{}
 
 	for {
-		err := u.GetUsage()
+		err := u.Measure()
 		if err != nil {
 			fmt.Fprintln(os.Stderr, err)
 			os.Exit(1)

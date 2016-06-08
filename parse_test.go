@@ -6,6 +6,15 @@ import (
 	"github.com/simulatedsimian/assert"
 )
 
+func TestCoreUsage(t *testing.T) {
+	assert := assert.Make(t)
+
+	assert(calcUsage(coreinfo{system: 0, user: 0, nice: 0, idle: 50})).Equal(0)
+	assert(calcUsage(coreinfo{system: 10, user: 20, nice: 20, idle: 50})).Equal(50)
+	assert(calcUsage(coreinfo{system: 10, user: 20, nice: 20, idle: 0})).Equal(100)
+
+}
+
 func TestCoreParse(t *testing.T) {
 	assert := assert.Make(t)
 

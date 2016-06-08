@@ -10,6 +10,22 @@ type coreinfo struct {
 	user, nice, system, idle int
 }
 
+func delta(c1, c2 coreinfo) coreinfo {
+	return coreinfo{
+		name:   c1.name,
+		user:   c2.user - c1.user,
+		nice:   c2.nice - c1.nice,
+		idle:   c2.idle - c1.idle,
+		system: c2.system - c1.system,
+	}
+}
+
+func calcUsage(c coreinfo) int {
+	used := c.nice + c.system + c.user
+	total := used + c.idle
+	return (used * 100) / total
+}
+
 type cpuinfo struct {
 	overall coreinfo
 	cores   []coreinfo
