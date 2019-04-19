@@ -3,7 +3,7 @@ package cpuusage
 import (
 	"testing"
 
-	"github.com/simulatedsimian/assert"
+	"github.com/0xcafed00d/assert"
 )
 
 func TestCoreUsage(t *testing.T) {
