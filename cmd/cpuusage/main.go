@@ -5,7 +5,7 @@ import (
 	"os"
 	"time"
 
-	"github.com/simulatedsimian/cpuusage"
+	"github.com/0xcafed00d/cpuusage"
 )
 
 func main() {
